@@ -95,12 +95,12 @@ export const SPEND_BY_RANGE: Record<SpendTimeRangeId, SpendChartData> = {
     title: "Spend by week",
     description: "Weekly spend so far this month.",
     points: [
-      { label: "Wk 1", amount: 190 },
-      { label: "Wk 2", amount: 240 },
-      { label: "Wk 3", amount: 210 },
-      { label: "Wk 4", amount: 220 },
+      { label: "Week 1", amount: 190 },
+      { label: "Week 2", amount: 240 },
+      { label: "Week 3", amount: 210 },
+      { label: "Week 4", amount: 220 },
     ],
-    highlightLabel: "Wk 4",
+    highlightLabel: "Week 4",
   },
   "this-quarter": {
     title: "Spend by month",

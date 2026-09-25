@@ -25,6 +25,8 @@ export function SpendByMonthChart({
   highlightLabel,
 }: SpendByMonthChartProps) {
   const max = Math.max(...points.map((point) => point.amount));
+  // Fewer bars get a wider bar (up to 70px), more bars taper down to 50px.
+  const barWidthPx = Math.max(50, Math.min(70, 70 - (points.length - 3) * 4));
 
   return (
     <Card>
@@ -48,10 +50,10 @@ export function SpendByMonthChart({
                 <div
                   title={`$${point.amount.toLocaleString()}`}
                   className={cn(
-                    "w-full rounded-t-md",
+                    "rounded-t-md",
                     isHighlighted ? "bg-brand-pink" : "bg-brand-pink/15",
                   )}
-                  style={{ height: `${heightPx}px` }}
+                  style={{ height: `${heightPx}px`, width: `${barWidthPx}px` }}
                 />
                 <span
                   className={cn(
