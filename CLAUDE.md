@@ -55,11 +55,25 @@ default Next.js template exist yet — see @docs/progress.md.
 
 - `src/components/ui/` — shadcn primitives only, untouched by hand.
 - `src/components/dashboard/` — the shared shell: Sidebar, nav config,
-  UserMenu, per-page header slot.
-- `src/components/<feature>/` — one folder per screen (`products/`,
-  `orders/`, `business-memory/`, `approvals/`, `reports/`,
-  `company-profile/`, `users-roles/`, `locations/`, `billing-payment/`).
-  Feature-specific components live next to the screen they belong to.
+  and the shared `PageHeader` (title/description + location and role
+  pills) used by every screen. **All screens share one header** — the
+  Locations and Billing & Payment mockups showed a different top-right
+  treatment, but that was a mockup inconsistency the designer is
+  correcting, not an intentional per-screen spec; don't build a
+  per-page header variant. Currently a simplified interim version:
+  title, description, location, role — no avatar or "+ New request"
+  button. Restore those once the designer delivers the finished header
+  design.
+- `src/components/overview/` — components specific to the Dashboard
+  *screen* itself (stat row, "Needs your decision", approved-products
+  table, Business Memory summary, activity feed). Named `overview`
+  rather than `dashboard` because that name is already taken by the
+  shared shell above — don't put screen content there.
+- `src/components/<feature>/` — one folder per remaining screen
+  (`products/`, `orders/`, `business-memory/`, `approvals/`,
+  `reports/`, `company-profile/`, `users-roles/`, `locations/`,
+  `billing-payment/`). Feature-specific components live next to the
+  screen they belong to.
 - `src/components/shared/` — cross-feature, non-primitive pieces
   (`StatCard`, `StatusBadge`, `OrderCutoffBanner`). Promote a component
   here only once a second feature actually needs it — don't

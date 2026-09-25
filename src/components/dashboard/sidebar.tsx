@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -22,6 +23,10 @@ interface SidebarProps {
   user: User;
 }
 
+interface SidebarNavContentProps extends SidebarProps {
+  onNavigate?: () => void;
+}
+
 function getInitials(name: string) {
   return name
     .split(" ")
@@ -35,7 +40,7 @@ function getRoleLabel(role: User["role"]) {
   return role.charAt(0).toUpperCase() + role.slice(1);
 }
 
-function SidebarNavContent({ company, user }: SidebarProps) {
+function SidebarNavContent({ company, user, onNavigate }: SidebarNavContentProps) {
   const pathname = usePathname();
 
   return (
@@ -73,6 +78,7 @@ function SidebarNavContent({ company, user }: SidebarProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      onClick={onNavigate}
                       className={cn(
                         "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                         isActive
@@ -111,9 +117,11 @@ function SidebarNavContent({ company, user }: SidebarProps) {
 }
 
 export function Sidebar({ company, user }: SidebarProps) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <>
-      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/10 bg-[#0b0e1a] px-4 py-3 md:hidden">
+      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/10 bg-[#0b0e1a] px-4 py-3 lg:hidden">
         <div className="flex items-center gap-2">
           <div
             className="flex size-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white"
@@ -127,7 +135,7 @@ export function Sidebar({ company, user }: SidebarProps) {
             {company.displayName}
           </p>
         </div>
-        <Sheet>
+        <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
           <SheetTrigger
             render={
               <Button
@@ -142,12 +150,16 @@ export function Sidebar({ company, user }: SidebarProps) {
           </SheetTrigger>
           <SheetContent side="left" className="w-72 border-none p-0 sm:max-w-none">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
-            <SidebarNavContent company={company} user={user} />
+            <SidebarNavContent
+              company={company}
+              user={user}
+              onNavigate={() => setMobileNavOpen(false)}
+            />
           </SheetContent>
         </Sheet>
       </div>
 
-      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 md:flex">
+      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 lg:flex">
         <SidebarNavContent company={company} user={user} />
       </aside>
     </>
