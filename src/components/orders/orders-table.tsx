@@ -64,7 +64,7 @@ export function OrdersTable({ orders, summary }: OrdersTableProps) {
               type="button"
               onClick={() => setActiveFilter(filter.value)}
               className={cn(
-                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                "cursor-pointer rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
                 activeFilter === filter.value
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:bg-muted",
@@ -109,7 +109,7 @@ export function OrdersTable({ orders, summary }: OrdersTableProps) {
                   <TableCell className="text-right">
                     <button
                       type="button"
-                      className="text-sm font-medium text-brand-pink hover:underline"
+                      className="cursor-pointer text-sm font-medium text-brand-pink hover:underline"
                     >
                       Track
                     </button>

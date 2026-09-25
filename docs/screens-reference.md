@@ -39,11 +39,39 @@ badge and "+ Add file." Every other tab stores that product type's own
 front/back print templates. This is the data Cloudinary stores and the
 Super Admin dashboard reads from to generate products.
 
+## 04(b)-Business Memorytwo.png — Business Memory, product-type tab
+Shows what a non-General tab actually looks like (captured on "Postcards
+6"×9"") — the "Print templates" section referenced above. Same intro
+line as the General tab ("General covers your brand foundation...")
+appears here too, directly under the tab bar, regardless of which tab is
+active. Below it: "Print templates" heading + "Stored by product..."
+subtitle, a count pill ("3 designs") top-right, then a grid of named
+designs (Classic/Modern/Bold) each shown as a front/back color-split
+thumbnail — one marked DEFAULT with a pink ring + badge, the others with
+a "Set default" text action — plus two dashed cards at the end, "+ Add
+design Front" and "+ Add design Back" (front and back are uploaded and
+replaced independently). Same closing tip banner as the General tab.
+
 ## 05-approvals.png — Approvals
 Tab filter: Awaiting Approval / Approved / Changes Requested / All, each
-with a count badge. List of pending proofs, each with Request
-changes / Approve / View proof actions. Avg response time and oldest-item
-age shown top-right.
+with a count badge. Default "Awaiting Approval" tab: subtitle "Nothing
+moves to production until you approve or request changes here.", then a
+list of pending proofs, each with Request changes / Approve / View proof
+actions. Avg response time and oldest-item age shown top-right of the
+tab row (applies to all tabs).
+
+## 05(b).Approvalstwo.png — Approvals, "All" tab
+Shows the "All" tab active — a different layout than Awaiting Approval's
+actionable list. Subtitle changes per tab ("Everything decided or
+waiting, most recent first." here, vs. Awaiting Approval's subtitle
+above) — it's not one shared line. Below it: a responsive card grid, one
+card per approval regardless of status, each showing a status badge
+(Awaiting/Changes requested — both amber; Approved — green) + bold title
++ a status-appropriate date line ("Submitted 2 days ago" / "Approved Aug
+10" / "Requested Aug 8"). No action buttons on these cards — read-only
+history/overview, unlike the Awaiting Approval list. Same card style is
+assumed for the Approved and Changes Requested tabs (filtered to their
+own status), though neither has its own mockup screenshot.
 
 ## 06-reports.png — Reports
 Recent orders table (same shape as Orders). Spend & performance section:

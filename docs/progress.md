@@ -57,15 +57,91 @@
   - `APPROVED_PRODUCTS_TOTAL` moved from `mock-data/dashboard.ts` to
     `mock-data/products.ts` (it's a products fact, and both Dashboard's
     and Orders' "View all N" links needed the same number)
-- The other 9 screens have the shared `PageHeader` with real
+- Business Memory screen fully built
+  (`src/app/(dashboard)/business-memory/page.tsx`) — tabs for General
+  plus all 6 product types (shadcn `Tabs`, horizontally scrollable on
+  narrow screens). General tab has the brand-colors swatch card and 3
+  file cards (brand identity, brand guidelines, logo files). Each
+  product-type tab shows a "Print templates" grid per the 04(b) mockup
+  — named designs with front/back color-split thumbnails, one marked
+  DEFAULT, plus separate "+ Add design Front" / "+ Add design Back"
+  actions. Supporting pieces:
+  - `src/components/business-memory/` — `FileCard`, `BrandColorsCard`
+    (General tab), `PrintDesignCard`, `AddDesignCard`,
+    `PrintTemplatesSection` (product-type tabs)
+  - `src/types/business-memory.ts` — generic `FileCard`
+    (title/description/status/files) for the General tab's cards, plus
+    `PrintDesign` (name/isDefault/frontColor/backColor) for the
+    per-product-type designs
+  - `StatusBadge` gained an `"in-progress"` tone (amber) alongside the
+    existing `"approved"` one
+  - `src/lib/mock-data/business-memory.ts` — General tab's 3 file
+    cards + the 6 product-type tab labels + `PRINT_DESIGNS_BY_TAB`.
+    Only the Postcards tab has a mockup (04(b): Classic/Modern/Bold
+    designs) — the other 5 product tabs start with zero designs (just
+    the two "Add design" actions) until real mockups exist for them
+- Approvals screen fully built (`src/app/(dashboard)/approvals/page.tsx`)
+  — 4 tabs (Awaiting Approval / Approved / Changes Requested / All)
+  with the same circular count-badge style as Products (counts derived
+  live from the mock array, not hardcoded — avoids the mockup's own
+  2+2+2≠5 arithmetic), avg-response summary text, closing tip banner.
+  Two different tab layouts per the 05 and 05(b) mockups: "Awaiting
+  Approval" is an actionable list (icon + title/subtitle + Request
+  changes / Approve / View proof); Approved / Changes Requested / All
+  are a read-only card grid (status badge + title + status date, no
+  actions) filtered by status. Each tab has its own subtitle line — it
+  is NOT one shared line above the tabs. Supporting pieces:
+  - `src/components/approvals/` — `ApprovalItem` + `ApprovalsList`
+    (Awaiting Approval), `ApprovalSummaryCard` + `ApprovalSummaryGrid`
+    (the other 3 tabs)
+  - `src/lib/mock-data/approvals.ts` — single `ALL_APPROVALS` array (5
+    items, matching 05(b)'s "All" tab), filtered per tab in the page
+  - `StatusBadge`'s `"awaiting"` and `"changes-requested"` tones
+    recolored to amber (were unused placeholders before; 05(b) showed
+    both render amber, not the gray/red they'd been guessed as)
+- Shared `ui/` primitives tuned to match the mockups more closely
+  (applies to every screen using them, not just one):
+  - `Tabs`/`TabsTrigger`: more generous padding, `rounded-md` (8px,
+    via the theme's `--radius-md` token) instead of the default
+    cramped/rounded-lg look
+  - `Button`, `TabsTrigger`, and a few hand-rolled `<button>`s: explicit
+    `cursor-pointer` (Tailwind v4 dropped the old default of pointer
+    cursors on buttons)
+  - `src/components/shared/tab-count-badge.tsx` — circular count badge
+    (gray by default, brand-pink + white when its tab is active),
+    replacing the oval shadcn `Badge` for tab counts
+- Reports screen fully built (`src/app/(dashboard)/reports/page.tsx`)
+  — recent-orders table (reuses the `Order` type + `StatusBadge`, with
+  its own status label map since this screen phrases "approved" as
+  "Approved & ready"), a **functional** time-range tab bar (This
+  Month/Quarter/Year/All Time — no design spec for per-range data, so
+  values are invented but internally consistent: each range's chart
+  granularity differs — weeks/months/months/years — and its points sum
+  to that range's "Total spend" stat), a hand-rolled CSS bar chart (no
+  charting library — one simple chart didn't justify the dependency),
+  and an "At a glance" stats card. Supporting pieces:
+  - `src/components/reports/` — `RecentOrdersTable`,
+    `SpendByMonthChart` (presentational, takes points/title/description
+    as props), `AtAGlanceCard`, `SpendPerformanceSection` (`"use client"`
+    — owns the selected-range state, is the only client component on
+    this otherwise server-rendered page)
+  - `src/lib/mock-data/reports.ts` — `SPEND_BY_RANGE` and
+    `AT_A_GLANCE_BY_RANGE`, keyed by `SpendTimeRangeId`
+  - Chart bars use fixed pixel heights (`MAX_BAR_HEIGHT_PX` scaled),
+    not percentages — a percentage height on the bar had no definite
+    parent height to resolve against one level up, so bars rendered
+    invisible until this fix
+- The other 6 screens have the shared `PageHeader` with real
   title/description copy, but placeholder body content only
 - GitHub repo created (`pwu_frontend`, private), pushed successfully
 
 ## Not started
-- Real body content for every screen except Dashboard, Products, and
-  Orders — build in the order listed in screens-reference.md, or
-  whatever order is asked for
+- Real body content for every screen except Dashboard, Products,
+  Orders, Business Memory, Approvals, and Reports — build in the order
+  listed in screens-reference.md, or whatever order is asked for
 - Personalized-tab content on the Products screen (no design spec yet)
+- Real per-product-type design content for the 5 non-Postcards product
+  tabs on Business Memory (no mockup exists for them yet)
 - The finished shared header (avatar + "+ New request" button) once
   the designer delivers corrected Locations/Billing & Payment mockups
   showing the real intended design

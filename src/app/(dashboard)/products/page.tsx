@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/dashboard/page-header";
 import { TipBanner } from "@/components/shared/tip-banner";
+import { TabCountBadge } from "@/components/shared/tab-count-badge";
 import { ProductGrid } from "@/components/products/product-grid";
-import { Badge } from "@/components/ui/badge";
 import {
   Tabs,
   TabsContent,
@@ -39,11 +39,11 @@ export default function ProductsPage() {
             <TabsList>
               <TabsTrigger value="ready-to-order" className="gap-1.5 data-active:text-brand-pink">
                 Ready to order
-                <Badge variant="secondary">{READY_TO_ORDER_PRODUCTS.length}</Badge>
+                <TabCountBadge count={READY_TO_ORDER_PRODUCTS.length} />
               </TabsTrigger>
               <TabsTrigger value="personalized" className="gap-1.5 data-active:text-brand-pink">
                 Personalized
-                <Badge variant="secondary">{PERSONALIZED_PRODUCTS_COUNT}</Badge>
+                <TabCountBadge count={PERSONALIZED_PRODUCTS_COUNT} />
               </TabsTrigger>
             </TabsList>
             <p className="text-sm text-muted-foreground">
