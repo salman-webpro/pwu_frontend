@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { OrderButton } from "@/components/shared/order-button";
+import { ConfirmOrderDialog } from "@/components/shared/confirm-order-dialog";
 import {
   Card,
   CardAction,
@@ -53,7 +53,7 @@ export function ApprovedProductsTable({
               <TableHead>Qty</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="text-right">Action</TableHead>
+              <TableHead className="text-right" />
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -71,7 +71,15 @@ export function ApprovedProductsTable({
                   <StatusBadge tone="approved" label="Approved" />
                 </TableCell>
                 <TableCell className="text-right">
-                  <OrderButton size="sm">Reorder</OrderButton>
+                  <ConfirmOrderDialog
+                    productName={product.name}
+                    spec={product.spec}
+                    quantity={product.quantity}
+                    turnaround={product.turnaround}
+                    price={product.price}
+                    triggerLabel="Reorder"
+                    triggerSize="sm"
+                  />
                 </TableCell>
               </TableRow>
             ))}

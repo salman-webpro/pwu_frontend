@@ -23,7 +23,7 @@ export function StatCard({
         )}
         {label}
       </p>
-      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
         <span className="text-2xl font-bold">{value}</span>
         {note && (
           <span

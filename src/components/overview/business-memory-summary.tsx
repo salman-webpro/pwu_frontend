@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/shared/status-badge";
 import {
   Card,
   CardAction,
@@ -32,9 +32,10 @@ export function BusinessMemorySummaryCard({
           decisions.
         </CardDescription>
         <CardAction>
-          <Badge variant="outline" className="border-transparent bg-green-50 text-green-700">
-            {summary.status === "healthy" ? "Healthy" : "Needs attention"}
-          </Badge>
+          <StatusBadge
+            tone={summary.status === "healthy" ? "approved" : "needs-attention"}
+            label={summary.status === "healthy" ? "Healthy" : "Needs attention"}
+          />
         </CardAction>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4 sm:grid-cols-4">

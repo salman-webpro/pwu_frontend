@@ -58,12 +58,15 @@ default Next.js template exist yet — see @docs/progress.md.
   and the shared `PageHeader` (title/description + location and role
   pills) used by every screen. **All screens share one header** — the
   Locations and Billing & Payment mockups showed a different top-right
-  treatment, but that was a mockup inconsistency the designer is
-  correcting, not an intentional per-screen spec; don't build a
-  per-page header variant. Currently a simplified interim version:
-  title, description, location, role — no avatar or "+ New request"
-  button. Restore those once the designer delivers the finished header
-  design.
+  treatment, but that was a mockup inconsistency the designer has since
+  corrected (confirmed in the updated mockups — both now use the
+  standard header, with their special content moved into the page body
+  instead). Currently a simplified interim version: title, description,
+  location, role — no avatar. The designer's updated mockups confirm
+  there's no avatar in the header design either, and that "+ New
+  request" was never a header element — it sits next to the
+  order-cutoff banner on Dashboard and Orders specifically (see
+  `NewRequestDialog`), not in the shared header.
 - `src/components/overview/` — components specific to the Dashboard
   *screen* itself (stat row, "Needs your decision", approved-products
   table, Business Memory summary, activity feed). Named `overview`

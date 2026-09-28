@@ -4,9 +4,10 @@ import type { PrintDesign } from "@/types/business-memory";
 
 interface PrintDesignCardProps {
   design: PrintDesign;
+  onSetDefault: (id: string) => void;
 }
 
-export function PrintDesignCard({ design }: PrintDesignCardProps) {
+export function PrintDesignCard({ design, onSetDefault }: PrintDesignCardProps) {
   return (
     <Card
       className={cn(
@@ -40,6 +41,7 @@ export function PrintDesignCard({ design }: PrintDesignCardProps) {
         ) : (
           <button
             type="button"
+            onClick={() => onSetDefault(design.id)}
             className="cursor-pointer text-muted-foreground hover:text-foreground"
           >
             Set default

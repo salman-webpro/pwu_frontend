@@ -1,5 +1,3 @@
-import { CreditCard, Mail, type LucideIcon } from "lucide-react";
-
 import type { Product } from "@/types/product";
 
 export interface DashboardStat {
@@ -27,40 +25,29 @@ export const DASHBOARD_STATS: DashboardStat[] = [
   },
 ];
 
-export interface DecisionAction {
-  label: string;
-  variant: "outline" | "default";
-}
-
 export interface DecisionItem {
   id: string;
-  icon: LucideIcon;
   iconTone: "pink" | "amber";
   title: string;
   subtitle: string;
-  actions: DecisionAction[];
+  kind: "proof" | "billing";
 }
 
 export const NEEDS_DECISION_ITEMS: DecisionItem[] = [
   {
     id: "postcard-proof",
-    icon: Mail,
     iconTone: "pink",
     title: "Postcard proof is ready",
     subtitle:
       'Postcards 6"×9" · production holds until you approve or request changes',
-    actions: [
-      { label: "Request changes", variant: "outline" },
-      { label: "Approve proof", variant: "default" },
-    ],
+    kind: "proof",
   },
   {
     id: "billing-signoff",
-    icon: CreditCard,
     iconTone: "amber",
     title: "New billing profile sign-off",
     subtitle: "Required before your next reorder",
-    actions: [{ label: "Review & sign off", variant: "default" }],
+    kind: "billing",
   },
 ];
 

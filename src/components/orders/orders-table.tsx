@@ -18,6 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { OrderTrackingDialog } from "@/components/orders/order-tracking-dialog";
 import { cn } from "@/lib/utils";
 import type { Order, OrderStatus } from "@/types/order";
 
@@ -107,12 +108,7 @@ export function OrdersTable({ orders, summary }: OrdersTableProps) {
                     />
                   </TableCell>
                   <TableCell className="text-right">
-                    <button
-                      type="button"
-                      className="cursor-pointer text-sm font-medium text-brand-pink hover:underline"
-                    >
-                      Track
-                    </button>
+                    <OrderTrackingDialog order={order} />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,4 +1,6 @@
-import { Plus } from "lucide-react";
+"use client";
+
+import { useState } from "react";
 
 import {
   Card,
@@ -9,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { AddBrandColorDialog } from "@/components/business-memory/add-brand-color-dialog";
 import type { BrandColor } from "@/types/company";
 import type { FileCardStatus } from "@/types/business-memory";
 
@@ -18,6 +21,8 @@ interface BrandColorsCardProps {
 }
 
 export function BrandColorsCard({ colors, status }: BrandColorsCardProps) {
+  const [palette, setPalette] = useState<BrandColor[]>(colors);
+
   return (
     <Card>
       <CardHeader>
@@ -31,20 +36,16 @@ export function BrandColorsCard({ colors, status }: BrandColorsCardProps) {
         </CardAction>
       </CardHeader>
       <CardContent className="flex items-center gap-3">
-        {colors.map((color) => (
+        {palette.map((color) => (
           <span
             key={color.hex}
             className="size-9 shrink-0 rounded-full ring-1 ring-foreground/10"
             style={{ backgroundColor: color.hex }}
           />
         ))}
-        <button
-          type="button"
-          className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dashed border-border text-muted-foreground hover:bg-muted"
-        >
-          <Plus className="size-4" />
-          <span className="sr-only">Add brand color</span>
-        </button>
+        <AddBrandColorDialog
+          onAdd={(hex) => setPalette((prev) => [...prev, { hex }])}
+        />
       </CardContent>
     </Card>
   );

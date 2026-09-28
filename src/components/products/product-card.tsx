@@ -1,7 +1,7 @@
 import { ImageIcon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { OrderButton } from "@/components/shared/order-button";
+import { ConfirmOrderDialog } from "@/components/shared/confirm-order-dialog";
 import type { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -46,7 +46,14 @@ export function ProductCard({ product, variant = "catalog" }: ProductCardProps) 
             Locked qty {product.quantity.toLocaleString()}
           </p>
         )}
-        <OrderButton className="mt-2 w-full">Order — 1 click →</OrderButton>
+        <ConfirmOrderDialog
+          productName={product.name}
+          spec={product.spec}
+          quantity={product.quantity}
+          turnaround={product.turnaround}
+          price={product.price}
+          triggerClassName="mt-2 w-full"
+        />
       </CardContent>
     </Card>
   );

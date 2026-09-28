@@ -1,6 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { Check } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -10,13 +12,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { StatusBadge } from "@/components/shared/status-badge";
-import type { FileCard as FileCardData } from "@/types/business-memory";
+import { AddFileDialog } from "@/components/business-memory/add-file-dialog";
+import type {
+  BrandFile,
+  BrandFileType,
+  FileCard as FileCardData,
+} from "@/types/business-memory";
 
 interface FileCardProps {
   card: FileCardData;
 }
 
+function guessFileType(fileName: string): BrandFileType {
+  const extension = fileName.split(".").pop()?.toLowerCase();
+  if (extension === "svg") return "svg";
+  if (extension === "png") return "png";
+  return "pdf";
+}
+
 export function FileCard({ card }: FileCardProps) {
+  const [files, setFiles] = useState<BrandFile[]>(card.files);
+
+  function handleUpload(fileName: string) {
+    setFiles((prev) => [
+      ...prev,
+      { id: `${card.id}-${prev.length}`, name: fileName, type: guessFileType(fileName) },
+    ]);
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -30,7 +53,7 @@ export function FileCard({ card }: FileCardProps) {
         </CardAction>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
-        {card.files.map((file) => (
+        {files.map((file) => (
           <div
             key={file.id}
             className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
@@ -42,9 +65,7 @@ export function FileCard({ card }: FileCardProps) {
             <Check className="size-4 shrink-0 text-green-600" />
           </div>
         ))}
-        <Button variant="outline" className="w-full">
-          + Add file
-        </Button>
+        <AddFileDialog onUpload={handleUpload} />
       </CardContent>
     </Card>
   );
