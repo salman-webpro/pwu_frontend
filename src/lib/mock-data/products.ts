@@ -1,4 +1,4 @@
-import type { Product } from "@/types/product";
+import type { PersonalizedProduct, Product } from "@/types/product";
 
 export const READY_TO_ORDER_PRODUCTS: Product[] = [
   {
@@ -69,10 +69,28 @@ export const READY_TO_ORDER_PRODUCTS: Product[] = [
   },
 ];
 
-// No mockup/design spec exists yet for Personalized-tab products — only
-// the count badge ("4") is shown in the Products mockup. Placeholder
-// until that design is delivered.
-export const PERSONALIZED_PRODUCTS_COUNT = 4;
+// The 3 Personalized-tab cards shown in
+// docs/screens/pages/02-products--personalized-tab.png — same product
+// repeated 3× in the mockup (front already on file, back still needed).
+const POSTCARD_QUANTITY_OPTIONS = [100, 250, 500, 1000];
+const POSTCARD_TEMPLATE_OPTIONS = ["Default template", "Classic", "Modern", "Bold"];
+
+export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [1, 2, 3].map(
+  (n) => ({
+    id: `postcards-6x9-personalized-${n}`,
+    name: 'Postcards 6"×9"',
+    spec: "16pt · UV front / uncoated back",
+    price: 469,
+    turnaround: "3 day",
+    imageUrl: "",
+    quantityOptions: POSTCARD_QUANTITY_OPTIONS,
+    defaultQuantity: 250,
+    templateOptions: POSTCARD_TEMPLATE_OPTIONS,
+    defaultTemplate: "Default template",
+    frontFileName: "front.pdf",
+    backFileName: null,
+  }),
+);
 
 // Total approved-product count shown in "View all N" links on both the
 // Dashboard and Orders screens.

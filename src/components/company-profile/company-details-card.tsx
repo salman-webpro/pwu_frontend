@@ -1,12 +1,12 @@
-"use client";
-
-import { useState } from "react";
-
-import { EditCompanyInfoDialog } from "@/components/company-profile/edit-company-info-dialog";
+import {
+  EditCompanyInfoDialog,
+  type CompanyInfoDraft,
+} from "@/components/company-profile/edit-company-info-dialog";
 import type { Company } from "@/types/company";
 
 interface CompanyDetailsCardProps {
   company: Company;
+  onSave: (updates: CompanyInfoDraft) => void;
 }
 
 function DetailCell({ label, value }: { label: string; value: string }) {
@@ -20,9 +20,7 @@ function DetailCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function CompanyDetailsCard({ company: initialCompany }: CompanyDetailsCardProps) {
-  const [company, setCompany] = useState(initialCompany);
-
+export function CompanyDetailsCard({ company, onSave }: CompanyDetailsCardProps) {
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
@@ -32,18 +30,7 @@ export function CompanyDetailsCard({ company: initialCompany }: CompanyDetailsCa
             What we print, bill, and ship under.
           </p>
         </div>
-        <EditCompanyInfoDialog
-          company={company}
-          onSave={(updates) =>
-            setCompany((prev) => ({
-              ...prev,
-              legalName: updates.legalName,
-              industry: updates.industry,
-              accountOwner: updates.accountOwner,
-              taxId: updates.taxId.trim() ? updates.taxId : undefined,
-            }))
-          }
-        />
+        <EditCompanyInfoDialog company={company} onSave={onSave} />
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
