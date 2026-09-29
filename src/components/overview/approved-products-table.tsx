@@ -60,7 +60,7 @@ export function ApprovedProductsTable({
             {products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>
-                  <p className="font-medium">{product.name}</p>
+                  <p className="font-semibold">{product.name}</p>
                   <p className="text-xs text-muted-foreground">
                     {product.spec}
                   </p>
