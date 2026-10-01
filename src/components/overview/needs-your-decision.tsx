@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardHeader,
   CardTitle,
@@ -47,17 +46,17 @@ export function NeedsYourDecision({ items }: NeedsYourDecisionProps) {
   return (
     <>
       <Card>
-        <CardHeader>
-          <CardTitle>Needs your decision</CardTitle>
-          <CardAction>
+        <CardHeader className="border-b">
+          <div className="flex items-center gap-2">
+            <CardTitle>Needs your decision</CardTitle>
             <span className="flex size-5 items-center justify-center rounded-full bg-brand-pink text-xs font-bold text-white">
               {visibleItems.length}
             </span>
-          </CardAction>
+          </div>
         </CardHeader>
-        <CardContent className="divide-y divide-border">
+        <CardContent className="divide-y divide-border p-0">
           {visibleItems.length === 0 && (
-            <p className="py-2 text-sm text-muted-foreground">
+            <p className="px-(--card-spacing) py-4 text-sm text-muted-foreground">
               Nothing waiting on you right now.
             </p>
           )}
@@ -66,7 +65,7 @@ export function NeedsYourDecision({ items }: NeedsYourDecisionProps) {
             return (
               <div
                 key={item.id}
-                className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-3 px-(--card-spacing) py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-start gap-3">
                   <div

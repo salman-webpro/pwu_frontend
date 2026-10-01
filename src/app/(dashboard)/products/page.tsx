@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/dashboard/page-header";
 import { TipBanner } from "@/components/shared/tip-banner";
 import { TabCountBadge } from "@/components/shared/tab-count-badge";
 import { ProductGrid } from "@/components/products/product-grid";
+import { PersonalizedProductGrid } from "@/components/products/personalized-product-grid";
 import {
   Tabs,
   TabsContent,
@@ -12,7 +13,7 @@ import { DEMO_USER } from "@/lib/mock-data/user";
 import { DEMO_COMPANY } from "@/lib/mock-data/company";
 import { DEFAULT_LOCATION_LABEL } from "@/lib/mock-data/locations";
 import {
-  PERSONALIZED_PRODUCTS_COUNT,
+  PERSONALIZED_PRODUCTS,
   READY_TO_ORDER_PRODUCTS,
 } from "@/lib/mock-data/products";
 
@@ -43,7 +44,7 @@ export default function ProductsPage() {
               </TabsTrigger>
               <TabsTrigger value="personalized" className="gap-1.5 data-active:text-brand-pink">
                 Personalized
-                <TabCountBadge count={PERSONALIZED_PRODUCTS_COUNT} />
+                <TabCountBadge count={PERSONALIZED_PRODUCTS.length} />
               </TabsTrigger>
             </TabsList>
             <p className="text-sm text-muted-foreground">
@@ -55,9 +56,7 @@ export default function ProductsPage() {
             <ProductGrid products={READY_TO_ORDER_PRODUCTS} />
           </TabsContent>
           <TabsContent value="personalized" className="mt-4">
-            <p className="text-sm text-muted-foreground">
-              Content for this screen is coming next.
-            </p>
+            <PersonalizedProductGrid products={PERSONALIZED_PRODUCTS} />
           </TabsContent>
         </Tabs>
 

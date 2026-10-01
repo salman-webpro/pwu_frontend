@@ -1,8 +1,8 @@
-// Profile completeness and the two address summaries shown on the Company
-// Profile screen. These are display-only fixtures for this screen — the
-// full, editable location list lives in mock-data/locations.ts instead.
-
-export const PROFILE_COMPLETENESS_PERCENT = 80;
+// The two address summaries shown on the Company Profile screen. These
+// are display-only fixtures for this screen — the full, editable
+// location list lives in mock-data/locations.ts instead. Profile
+// completeness is computed (see lib/profile-completeness.ts), not a
+// fixture.
 
 export interface CompanyAddressSummary {
   id: string;
