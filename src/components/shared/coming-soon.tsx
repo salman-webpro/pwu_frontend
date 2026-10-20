@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 
 // Arbitrary placeholder launch date — there's no real ship date yet, this
 // just keeps the countdown ticking down instead of frozen at fixed numbers.
-const LAUNCH_DATE = new Date("2026-12-01T00:00:00");
+const LAUNCH_DATE = new Date("2027-01-01T00:00:00");
 
 function getTimeRemaining() {
   const totalMs = Math.max(0, LAUNCH_DATE.getTime() - Date.now());
@@ -23,7 +23,7 @@ function CountdownUnit({ value, unit }: { value: number; unit: string }) {
     <div className="flex items-baseline">
       <span
         className="text-7xl font-bold sm:text-8xl lg:text-9xl"
-        style={{ WebkitTextStroke: "2px currentColor", color: "transparent" }}
+        style={{ WebkitTextStroke: "2px rgb(236 8 104)", color: "transparent" }}
       >
         {value}
       </span>
@@ -39,7 +39,10 @@ export function ComingSoon() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => setRemaining(getTimeRemaining()), 60_000);
+    const interval = setInterval(
+      () => setRemaining(getTimeRemaining()),
+      60_000,
+    );
     return () => clearInterval(interval);
   }, []);
 
@@ -63,10 +66,7 @@ export function ComingSoon() {
         Coming Soon.
       </h1>
 
-      <form
-        onSubmit={handleSubscribe}
-        className="mt-10 max-w-md"
-      >
+      <form onSubmit={handleSubscribe} className="mt-10 max-w-md">
         <p className="font-semibold">Get notified when we launch</p>
         <div className="mt-3 flex gap-2">
           <Input

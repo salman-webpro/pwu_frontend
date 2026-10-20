@@ -36,14 +36,18 @@ export function FileCard({ card }: FileCardProps) {
   function handleUpload(fileName: string) {
     setFiles((prev) => [
       ...prev,
-      { id: `${card.id}-${prev.length}`, name: fileName, type: guessFileType(fileName) },
+      {
+        id: `${card.id}-${prev.length}`,
+        name: fileName,
+        type: guessFileType(fileName),
+      },
     ]);
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{card.title}</CardTitle>
+        <CardTitle className="font-bold">{card.title}</CardTitle>
         <CardDescription>{card.description}</CardDescription>
         <CardAction>
           <StatusBadge

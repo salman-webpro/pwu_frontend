@@ -29,11 +29,15 @@ function roleLabel(role: User["role"]) {
   return role.charAt(0).toUpperCase() + role.slice(1);
 }
 
-export function TeamMembersCard({ users, roles, summary }: TeamMembersCardProps) {
+export function TeamMembersCard({
+  users,
+  roles,
+  summary,
+}: TeamMembersCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Team members</CardTitle>
+        <CardTitle className="font-bold">Team members</CardTitle>
         <CardDescription>{summary}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
@@ -52,41 +56,45 @@ export function TeamMembersCard({ users, roles, summary }: TeamMembersCardProps)
               {users.map((user) => {
                 const role = roles.find((r) => r.role === user.role);
                 return (
-                <TableRow key={user.id} className="bg-muted/40">
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <Avatar size="sm">
-                        <AvatarFallback className="bg-brand-pink/80 text-white">
-                          {user.avatarInitials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-medium">{user.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {user.email}
-                        </p>
+                  <TableRow key={user.id} className="bg-muted/40">
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <Avatar size="sm">
+                          <AvatarFallback className="bg-brand-pink/80 text-white">
+                            {user.avatarInitials}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-medium">{user.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {user.email}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700">
-                      <span className="size-1.5 rounded-full bg-indigo-500" />
-                      {roleLabel(user.role)}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {user.lastActive ?? "—"}
-                  </TableCell>
-                  <TableCell>
-                    <StatusBadge
-                      tone={user.status === "active" ? "approved" : "awaiting"}
-                      label={user.status === "active" ? "Active" : "Invited"}
-                    />
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {role && <ManageUserAccessDialog user={user} role={role} />}
-                  </TableCell>
-                </TableRow>
+                    </TableCell>
+                    <TableCell>
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700">
+                        <span className="size-1.5 rounded-full bg-indigo-500" />
+                        {roleLabel(user.role)}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {user.lastActive ?? "—"}
+                    </TableCell>
+                    <TableCell>
+                      <StatusBadge
+                        tone={
+                          user.status === "active" ? "approved" : "awaiting"
+                        }
+                        label={user.status === "active" ? "Active" : "Invited"}
+                      />
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {role && (
+                        <ManageUserAccessDialog user={user} role={role} />
+                      )}
+                    </TableCell>
+                  </TableRow>
                 );
               })}
             </TableBody>

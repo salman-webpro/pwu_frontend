@@ -33,7 +33,7 @@ export function LocationsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>All locations</CardTitle>
+        <CardTitle className="font-bold text-xl">All locations</CardTitle>
         <CardDescription>
           {locations.length} sites in King County, WA
           {defaultLocation ? ` · ${defaultLocation.name} is the default` : ""}
