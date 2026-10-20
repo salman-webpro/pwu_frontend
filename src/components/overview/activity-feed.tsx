@@ -16,7 +16,7 @@ export function ActivityFeed({ items }: ActivityFeedProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Live from the system</CardTitle>
+        <CardTitle className="font-bold">Live from the system</CardTitle>
       </CardHeader>
       <CardContent className="divide-y divide-border">
         {items.map((item) => (
@@ -26,7 +26,10 @@ export function ActivityFeed({ items }: ActivityFeedProps) {
           >
             <div className="flex items-center gap-2">
               <span
-                className={cn("size-1.5 rounded-full", DOT_TONE_STYLES[item.tone])}
+                className={cn(
+                  "size-1.5 rounded-full",
+                  DOT_TONE_STYLES[item.tone],
+                )}
               />
               <p className="text-sm">{item.text}</p>
             </div>

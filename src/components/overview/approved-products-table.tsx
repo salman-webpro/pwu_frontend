@@ -32,7 +32,7 @@ export function ApprovedProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Approved products</CardTitle>
+        <CardTitle className="font-bold">Approved products</CardTitle>
         <CardDescription>
           Firm price and delivery date — reorder without reconfiguring.
         </CardDescription>
