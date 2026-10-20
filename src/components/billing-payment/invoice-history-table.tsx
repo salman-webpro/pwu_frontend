@@ -24,7 +24,7 @@ export function InvoiceHistoryTable({ invoices }: InvoiceHistoryTableProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Invoice history</CardTitle>
+        <CardTitle className="font-bold">Invoice history</CardTitle>
         <CardAction>
           <button className="text-sm font-medium text-brand-pink hover:underline">
             View all →

@@ -4,7 +4,10 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { toast } from "sonner";
 
-import { AddLocationDialog, type NewLocationInput } from "@/components/locations/add-location-dialog";
+import {
+  AddLocationDialog,
+  type NewLocationInput,
+} from "@/components/locations/add-location-dialog";
 import { LocationDetailCard } from "@/components/locations/location-detail-card";
 import { LocationsTable } from "@/components/locations/locations-table";
 import type { Location } from "@/types/location";
@@ -71,7 +74,7 @@ export function LocationsSection({ initialLocations }: LocationsSectionProps) {
       />
 
       <div>
-        <h2 className="text-lg font-semibold">Location details</h2>
+        <h2 className="text-lg font-bold">Location details</h2>
         <p className="text-sm text-muted-foreground">
           Full address, contact, and tax rate for each site.
         </p>

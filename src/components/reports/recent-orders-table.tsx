@@ -33,7 +33,7 @@ export function RecentOrdersTable({ orders, summary }: RecentOrdersTableProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent orders</CardTitle>
+        <CardTitle className="font-bold">Recent orders</CardTitle>
         <CardDescription>{summary}</CardDescription>
       </CardHeader>
       <CardContent className="overflow-x-auto">

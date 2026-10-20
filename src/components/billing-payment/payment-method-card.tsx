@@ -1,15 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function PaymentMethodCard() {
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Payment method</CardTitle>
+        <CardTitle className="font-bold">Payment method</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <div className="flex items-start gap-3 rounded-lg bg-muted/50 p-4">
@@ -25,9 +20,9 @@ export function PaymentMethodCard() {
         </div>
 
         <div className="rounded-lg bg-brand-pink/10 p-4 text-sm text-brand-pink">
-          Reorders and instant-checkout products are paid the moment you
-          submit — quote-based orders are billed once the quote is accepted.
-          Cards never touch our servers.
+          Reorders and instant-checkout products are paid the moment you submit
+          — quote-based orders are billed once the quote is accepted. Cards
+          never touch our servers.
         </div>
       </CardContent>
     </Card>

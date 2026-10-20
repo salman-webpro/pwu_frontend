@@ -26,7 +26,7 @@ export function BusinessMemorySummaryCard({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Business Memory</CardTitle>
+        <CardTitle className="font-bold">Business Memory</CardTitle>
         <CardDescription>
           Approved once, ordered forever — your portfolio of preserved
           decisions.

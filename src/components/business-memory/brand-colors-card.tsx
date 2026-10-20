@@ -26,7 +26,7 @@ export function BrandColorsCard({ colors, status }: BrandColorsCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Brand colors</CardTitle>
+        <CardTitle className="font-bold">Brand colors</CardTitle>
         <CardDescription>Palette for print & digital use</CardDescription>
         <CardAction>
           <StatusBadge

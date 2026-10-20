@@ -5,12 +5,7 @@ import { CreditCard, Mail, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ConfirmBillingProfileDialog } from "@/components/shared/confirm-billing-profile-dialog";
 import { ProofApprovalDialog } from "@/components/shared/proof-approval-dialog";
 import { cn } from "@/lib/utils";
@@ -48,7 +43,7 @@ export function NeedsYourDecision({ items }: NeedsYourDecisionProps) {
       <Card>
         <CardHeader className="border-b">
           <div className="flex items-center gap-2">
-            <CardTitle>Needs your decision</CardTitle>
+            <CardTitle className="font-bold">Needs your decision</CardTitle>
             <span className="flex size-5 items-center justify-center rounded-full bg-brand-pink text-xs font-bold text-white">
               {visibleItems.length}
             </span>

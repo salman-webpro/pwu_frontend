@@ -54,7 +54,7 @@ export function OrdersTable({ orders, summary }: OrdersTableProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Order history</CardTitle>
+        <CardTitle className="font-bold">Order history</CardTitle>
         <CardDescription>{summary}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">

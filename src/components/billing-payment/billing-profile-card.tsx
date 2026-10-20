@@ -25,13 +25,15 @@ function Field({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function BillingProfileCard({ profile: initialProfile }: BillingProfileCardProps) {
+export function BillingProfileCard({
+  profile: initialProfile,
+}: BillingProfileCardProps) {
   const [profile, setProfile] = useState(initialProfile);
 
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Billing profile</CardTitle>
+        <CardTitle className="font-bold">Billing profile</CardTitle>
         <CardAction>
           <EditBillingProfileDialog profile={profile} onSave={setProfile} />
         </CardAction>
